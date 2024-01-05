@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunny.Codegenerator.dao.AuthDictMapper">
+    <sql id="resultColumns">
+        AuthDict
+        .
+        ID
+        as id
+,AuthDict.C_XUHAO as cxuhao
+,AuthDict.C_NAME as cname
+,AuthDict.N_PARENT as nparent
+,AuthDict.D_CREATE as dcreate
+,AuthDict.C_CREATOR as ccreator
+,AuthDict.N_SYSID as nsysid
+,AuthDict.C_STR1 as cstr1
+,AuthDict.C_STR2 as cstr2
+,AuthDict.C_STR3 as cstr3
+,AuthDict.C_STR4 as cstr4
+,AuthDict.C_STR5 as cstr5
+,AuthDict.C_STR6 as cstr6
+,AuthDict.C_STR7 as cstr7
+,AuthDict.C_STR8 as cstr8
+,AuthDict.C_STR9 as cstr9
+,AuthDict.C_STR10 as cstr10
+,AuthDict.TS as ts
+
+
+    </sql>
+    <sql id="dynamicCondition">
+        <where>
+            1=1
+            <if test="id!= null">
+                and AuthDict.ID = #{id}
+            </if>
+            <if test="cxuhao != null and cxuhao != ''">
+                and AuthDict.C_XUHAO like concat(concat('%',#{cxuhao}),'%')
+            </if>
+            <if test="cname != null and cname != ''">
+                and AuthDict.C_NAME like concat(concat('%',#{cname}),'%')
+            </if>
+            <if test="nparent!= null">
+                and AuthDict.N_PARENT = #{nparent}
+            </if>
+            <if test="dcreate!= null">
+                and AuthDict.D_CREATE = #{dcreate}
+            </if>
+            <if test="ccreator != null and ccreator != ''">
+                and AuthDict.C_CREATOR like concat(concat('%',#{ccreator}),'%')
+            </if>
+            <if test="nsysid!= null">
+                and AuthDict.N_SYSID = #{nsysid}
+            </if>
+            <if test="cstr1 != null and cstr1 != ''">
+                and AuthDict.C_STR1 like concat(concat('%',#{cstr1}),'%')
+            </if>
+            <if test="cstr2 != null and cstr2 != ''">
+                and AuthDict.C_STR2 like concat(concat('%',#{cstr2}),'%')
+            </if>
+            <if test="cstr3 != null and cstr3 != ''">
+                and AuthDict.C_STR3 like concat(concat('%',#{cstr3}),'%')
+            </if>
+            <if test="cstr4 != null and cstr4 != ''">
+                and AuthDict.C_STR4 like concat(concat('%',#{cstr4}),'%')
+            </if>
+            <if test="cstr5 != null and cstr5 != ''">
+                and AuthDict.C_STR5 like concat(concat('%',#{cstr5}),'%')
+            </if>
+            <if test="cstr6 != null and cstr6 != ''">
+                and AuthDict.C_STR6 like concat(concat('%',#{cstr6}),'%')
+            </if>
+            <if test="cstr7 != null and cstr7 != ''">
+                and AuthDict.C_STR7 like concat(concat('%',#{cstr7}),'%')
+            </if>
+            <if test="cstr8 != null and cstr8 != ''">
+                and AuthDict.C_STR8 like concat(concat('%',#{cstr8}),'%')
+            </if>
+            <if test="cstr9 != null and cstr9 != ''">
+                and AuthDict.C_STR9 like concat(concat('%',#{cstr9}),'%')
+            </if>
+            <if test="cstr10 != null and cstr10 != ''">
+                and AuthDict.C_STR10 like concat(concat('%',#{cstr10}),'%')
+            </if>
+            <if test="ts!= null">
+                and AuthDict.TS = #{ts}
+            </if>
+
+        </where>
+    </sql>
+
+    <select id="getObjectById" parameterType="com.sunny.Codegenerator.entity.AuthDict"
+            resultType="com.sunny.Codegenerator.entity.AuthDict">
+        select
+        <include refid="resultColumns"/>
+        from AUTH_DICT AuthDict where id=#{id}
+    </select>
+
+    <select id="queryList" parameterType="com.sunny.Codegenerator.entity.AuthDict"
+            resultType="com.sunny.Codegenerator.entity.AuthDict">
+        select
+        <include refid="resultColumns"/>
+        from AUTH_DICT AuthDict
+        <include refid="dynamicCondition"/>
+    </select>
+    <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="false">
+        INSERT INTO AUTH_DICT (
+        ID,
+        C_XUHAO
+        , C_NAME
+        , N_PARENT
+        , D_CREATE
+        , C_CREATOR
+        , N_SYSID
+        , C_STR1
+        , C_STR2
+        , C_STR3
+        , C_STR4
+        , C_STR5
+        , C_STR6
+        , C_STR7
+        , C_STR8
+        , C_STR9
+        , C_STR10)
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            (
+            SELECT
+            #{item.id,jdbcType=DECIMAL}
+            , #{item.cxuhao,jdbcType=VARCHAR}
+            , #{item.cname,jdbcType=VARCHAR}
+            , #{item.nparent,jdbcType=DECIMAL}
+            , #{item.dcreate,jdbcType=DATE}
+            , #{item.ccreator,jdbcType=VARCHAR}
+            , #{item.nsysid,jdbcType=DECIMAL}
+            , #{item.cstr1,jdbcType=VARCHAR}
+            , #{item.cstr2,jdbcType=VARCHAR}
+            , #{item.cstr3,jdbcType=VARCHAR}
+            , #{item.cstr4,jdbcType=VARCHAR}
+            , #{item.cstr5,jdbcType=VARCHAR}
+            , #{item.cstr6,jdbcType=VARCHAR}
+            , #{item.cstr7,jdbcType=VARCHAR}
+            , #{item.cstr8,jdbcType=VARCHAR}
+            , #{item.cstr9,jdbcType=VARCHAR}
+            , #{item.cstr10,jdbcType=VARCHAR}
+            FROM DUAL
+            )
+
+        </foreach>
+
+    </insert>
+    <insert id="insert" parameterType="com.sunny.Codegenerator.entity.AuthDict">
+        INSERT INTO AUTH_DICT (
+        C_XUHAO
+        ,C_NAME
+        ,N_PARENT
+        ,C_CREATE
+        ,D_CREATE
+        ,N_SYSID
+        ,C_STR1
+        ,C_STR2
+        ,C_STR3
+        ,C_STR4
+        ,C_STR5
+        ,C_STR6
+        ,C_STR7
+        ,C_STR8
+        ,C_STR9
+        ,C_STR10
+        ) values(
+        #{cxuhao,jdbcType=VARCHAR}
+        ,#{cname,jdbcType=VARCHAR}
+        ,#{nparent,jdbcType=DECIMAL}
+        ,#{ccreate,jdbcType=VARCHAR}
+        , #{dcreate,jdbcType=DATE}
+        ,#{nsysid,jdbcType=DECIMAL}
+        ,#{cstr1,jdbcType=VARCHAR}
+        ,#{cstr2,jdbcType=VARCHAR}
+        ,#{cstr3,jdbcType=VARCHAR}
+        ,#{cstr4,jdbcType=VARCHAR}
+        ,#{cstr5,jdbcType=VARCHAR}
+        ,#{cstr6,jdbcType=VARCHAR}
+        ,#{cstr7,jdbcType=VARCHAR}
+        ,#{cstr8,jdbcType=VARCHAR}
+        ,#{cstr9,jdbcType=VARCHAR}
+        ,#{cstr10,jdbcType=VARCHAR}
+        )
+        <selectKey resultType="java.math.BigDecimal" keyProperty="id">
+            SELECT AUTH_DICT_SEQ.CURRVAL AS id FROM DUAL
+        </selectKey>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sunny.Codegenerator.entity.AuthDict">
+        update AUTH_DICT
+        <set>
+
+            <if test="cxuhao != null and cxuhao != ''">
+                C_XUHAO = #{cxuhao},
+            </if>
+            <if test="cname != null and cname != ''">
+                C_NAME = #{cname},
+            </if>
+            <if test="nparent != null ">
+                N_PARENT = #{nparent},
+            </if>
+            <if test="dcreate != null ">
+                D_CREATE = #{dcreate},
+            </if>
+            <if test="ccreator != null and ccreator != ''">
+                C_CREATOR = #{ccreator},
+            </if>
+            <if test="nsysid != null ">
+                N_SYSID = #{nsysid},
+            </if>
+            <if test="cstr1 != null and cstr1 != ''">
+                C_STR1 = #{cstr1},
+            </if>
+            <if test="cstr2 != null and cstr2 != ''">
+                C_STR2 = #{cstr2},
+            </if>
+            <if test="cstr3 != null and cstr3 != ''">
+                C_STR3 = #{cstr3},
+            </if>
+            <if test="cstr4 != null and cstr4 != ''">
+                C_STR4 = #{cstr4},
+            </if>
+            <if test="cstr5 != null and cstr5 != ''">
+                C_STR5 = #{cstr5},
+            </if>
+            <if test="cstr6 != null and cstr6 != ''">
+                C_STR6 = #{cstr6},
+            </if>
+            <if test="cstr7 != null and cstr7 != ''">
+                C_STR7 = #{cstr7},
+            </if>
+            <if test="cstr8 != null and cstr8 != ''">
+                C_STR8 = #{cstr8},
+            </if>
+            <if test="cstr9 != null and cstr9 != ''">
+                C_STR9 = #{cstr9},
+            </if>
+            <if test="cstr10 != null and cstr10 != ''">
+                C_STR10 = #{cstr10},
+            </if>
+
+            version=version+1
+        </set>
+        where
+        id = #{id} and version= #{version}
+    </update>
+
+
+    <delete id="deleteByIds">
+        delete
+        from
+        AUTH_DICT
+        where
+        id in
+        <foreach collection="idList" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="count" parameterType="com.sunny.Codegenerator.entity.AuthDict" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM
+        from AUTH_DICT AuthDict
+        <include refid="dynamicCondition"/>
+    </select>
+</mapper>
+

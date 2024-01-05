@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunny.Codegenerator.dao.SapFuzhuMapper">
+    <sql id="resultColumns">
+SapFuzhu.ID as id
+,SapFuzhu.C_NAME as cname
+,SapFuzhu.C_XUHAO as cxuhao
+,SapFuzhu.D_DATE as ddate
+,to_char(SapFuzhu.D_DATE,'yyyy-MM-dd') as cdate
+,SapFuzhu.N_STAFF as nstaff
+,SapFuzhu.N_LEIBIE as nleibie
+,SapFuzhu.N_BZ as nbz
+,SapFuzhu.C_YANSE as cyanse
+,SapFuzhu.N_ZLZX as nzlzx
+,SapFuzhu.N_BIAOZHI as nbiaozhi
+,SapFuzhu.N_SFTF as nsftf
+,SapFuzhu.N_DQBZ as ndqbz
+,SapFuzhu.N_XMLB as nxmlb
+,SapFuzhu.N_QYBZ as nqybz
+,SapFuzhu.N_SFMRP as nsfmrp
+,SapFuzhu.D_JZRQ as djzrq
+,SapFuzhu.D_SXRQ as dsxrq
+,SapFuzhu.C_GNFW as cgnfw
+,SapFuzhu.C_DJBZ as cdjbz
+,SapFuzhu.N_GONGXU as ngongxu
+,SapFuzhu.C_GLF as cglf
+,SapFuzhu.N_SFHD as nsfhd
+,SapFuzhu.N_MRPSPR as nmrpspr
+,SapFuzhu.C_ZYTJ as czytj
+,SapFuzhu.C_TJLX as ctjlx
+,SapFuzhu.C_JHLB as cjhlb
+,SapFuzhu.C_SPR1 as cspr1
+,SapFuzhu.C_SPR2 as cspr2
+,SapFuzhu.C_SPR3 as cspr3
+,SapFuzhu.C_FPLX as cfplx
+,SapFuzhu.C_JC as cjc
+,SapFuzhu.F_JC as fjc
+,SapFuzhu.C_JBDWLX as cjbdwlx
+,SapFuzhu.N_GCBZ as ngcbz
+,SapFuzhu.N_PAIXU as npaixu
+,SapFuzhu.C_CHDLX as cchdlx
+,SapFuzhu.N_FKTJTS as nfktjts
+,SapFuzhu.TS as ts
+,SapFuzhu.N_CGDDSXS as ncgddsxs
+,SapFuzhu.C_LTC as cltc
+,SapFuzhu.N_SFMES as nsfmes
+,SapFuzhu.N_SFHWGL as nsfhwgl
+,SapFuzhu.C_NAME_EN as cnameen
+,SapFuzhu.N_SFYW as nsfyw
+,SapFuzhu.C_GJ as cgj
+,SapFuzhu.N_WMSTYPE as nwmstype
+,SapFuzhu.C_IFMSBH as cifmsbh
+,SapFuzhu.C_SAPNUMB as csapnumb
+
+
+    </sql>
+    <sql id="dynamicCondition">
+        <where>
+            1=1
+            <if test="id!= null"> 
+ and SapFuzhu.ID = #{id}  
+</if>
+<if test="cname != null and cname != ''"> 
+ and SapFuzhu.C_NAME like concat(concat('%',#{cname}),'%')  
+</if>
+<if test="cxuhao != null and cxuhao != ''"> 
+ and SapFuzhu.C_XUHAO like concat(concat('%',#{cxuhao}),'%')  
+</if>
+ <if test="ddateAfter!= null and  ddateAfter!= '' ">
+                and SapFuzhu.D_DATE <![CDATA[<=]]>#{ddateAfter}
+            </if>
+            <if test="ddateBefore!= null  and  ddateBefore!= '' ">
+                and SapFuzhu.D_DATE <![CDATA[>=]]>#{ddateBefore}
+            </if><if test="ddate!= null"> 
+ and SapFuzhu.D_DATE = #{ddate}  
+</if>
+<if test="nstaff!= null"> 
+ and SapFuzhu.N_STAFF = #{nstaff}  
+</if>
+<if test="nleibie!= null"> 
+ and SapFuzhu.N_LEIBIE = #{nleibie}  
+</if>
+<if test="nbz!= null"> 
+ and SapFuzhu.N_BZ = #{nbz}  
+</if>
+<if test="cyanse != null and cyanse != ''"> 
+ and SapFuzhu.C_YANSE like concat(concat('%',#{cyanse}),'%')  
+</if>
+<if test="nzlzx != null and nzlzx != ''"> 
+ and SapFuzhu.N_ZLZX like concat(concat('%',#{nzlzx}),'%')  
+</if>
+<if test="nbiaozhi!= null"> 
+ and SapFuzhu.N_BIAOZHI = #{nbiaozhi}  
+</if>
+<if test="nsftf!= null"> 
+ and SapFuzhu.N_SFTF = #{nsftf}  
+</if>
+<if test="ndqbz!= null"> 
+ and SapFuzhu.N_DQBZ = #{ndqbz}  
+</if>
+<if test="nxmlb!= null"> 
+ and SapFuzhu.N_XMLB = #{nxmlb}  
+</if>
+<if test="nqybz!= null"> 
+ and SapFuzhu.N_QYBZ = #{nqybz}  
+</if>
+<if test="nsfmrp!= null"> 
+ and SapFuzhu.N_SFMRP = #{nsfmrp}  
+</if>
+<if test="djzrq!= null"> 
+ and SapFuzhu.D_JZRQ = #{djzrq}  
+</if>
+<if test="dsxrq!= null"> 
+ and SapFuzhu.D_SXRQ = #{dsxrq}  
+</if>
+<if test="cgnfw != null and cgnfw != ''"> 
+ and SapFuzhu.C_GNFW like concat(concat('%',#{cgnfw}),'%')  
+</if>
+<if test="cdjbz != null and cdjbz != ''"> 
+ and SapFuzhu.C_DJBZ like concat(concat('%',#{cdjbz}),'%')  
+</if>
+<if test="ngongxu!= null"> 
+ and SapFuzhu.N_GONGXU = #{ngongxu}  
+</if>
+<if test="cglf != null and cglf != ''"> 
+ and SapFuzhu.C_GLF like concat(concat('%',#{cglf}),'%')  
+</if>
+<if test="nsfhd!= null"> 
+ and SapFuzhu.N_SFHD = #{nsfhd}  
+</if>
+<if test="nmrpspr!= null"> 
+ and SapFuzhu.N_MRPSPR = #{nmrpspr}  
+</if>
+<if test="czytj != null and czytj != ''"> 
+ and SapFuzhu.C_ZYTJ like concat(concat('%',#{czytj}),'%')  
+</if>
+<if test="ctjlx != null and ctjlx != ''"> 
+ and SapFuzhu.C_TJLX like concat(concat('%',#{ctjlx}),'%')  
+</if>
+<if test="cjhlb != null and cjhlb != ''"> 
+ and SapFuzhu.C_JHLB like concat(concat('%',#{cjhlb}),'%')  
+</if>
+<if test="cspr1 != null and cspr1 != ''"> 
+ and SapFuzhu.C_SPR1 like concat(concat('%',#{cspr1}),'%')  
+</if>
+<if test="cspr2 != null and cspr2 != ''"> 
+ and SapFuzhu.C_SPR2 like concat(concat('%',#{cspr2}),'%')  
+</if>
+<if test="cspr3 != null and cspr3 != ''"> 
+ and SapFuzhu.C_SPR3 like concat(concat('%',#{cspr3}),'%')  
+</if>
+<if test="cfplx != null and cfplx != ''"> 
+ and SapFuzhu.C_FPLX like concat(concat('%',#{cfplx}),'%')  
+</if>
+<if test="cjc != null and cjc != ''"> 
+ and SapFuzhu.C_JC like concat(concat('%',#{cjc}),'%')  
+</if>
+<if test="fjc!= null"> 
+ and SapFuzhu.F_JC = #{fjc}  
+</if>
+<if test="cjbdwlx != null and cjbdwlx != ''"> 
+ and SapFuzhu.C_JBDWLX like concat(concat('%',#{cjbdwlx}),'%')  
+</if>
+<if test="ngcbz!= null"> 
+ and SapFuzhu.N_GCBZ = #{ngcbz}  
+</if>
+<if test="npaixu!= null"> 
+ and SapFuzhu.N_PAIXU = #{npaixu}  
+</if>
+<if test="cchdlx != null and cchdlx != ''"> 
+ and SapFuzhu.C_CHDLX like concat(concat('%',#{cchdlx}),'%')  
+</if>
+<if test="nfktjts!= null"> 
+ and SapFuzhu.N_FKTJTS = #{nfktjts}  
+</if>
+<if test="ts!= null"> 
+ and SapFuzhu.TS = #{ts}  
+</if>
+<if test="ncgddsxs!= null"> 
+ and SapFuzhu.N_CGDDSXS = #{ncgddsxs}  
+</if>
+<if test="cltc != null and cltc != ''"> 
+ and SapFuzhu.C_LTC like concat(concat('%',#{cltc}),'%')  
+</if>
+<if test="nsfmes!= null"> 
+ and SapFuzhu.N_SFMES = #{nsfmes}  
+</if>
+<if test="nsfhwgl!= null"> 
+ and SapFuzhu.N_SFHWGL = #{nsfhwgl}  
+</if>
+<if test="cnameen != null and cnameen != ''"> 
+ and SapFuzhu.C_NAME_EN like concat(concat('%',#{cnameen}),'%')  
+</if>
+<if test="nsfyw!= null"> 
+ and SapFuzhu.N_SFYW = #{nsfyw}  
+</if>
+<if test="cgj != null and cgj != ''"> 
+ and SapFuzhu.C_GJ like concat(concat('%',#{cgj}),'%')  
+</if>
+<if test="nwmstype!= null"> 
+ and SapFuzhu.N_WMSTYPE = #{nwmstype}  
+</if>
+<if test="cifmsbh != null and cifmsbh != ''"> 
+ and SapFuzhu.C_IFMSBH like concat(concat('%',#{cifmsbh}),'%')  
+</if>
+<if test="csapnumb != null and csapnumb != ''"> 
+ and SapFuzhu.C_SAPNUMB like concat(concat('%',#{csapnumb}),'%')  
+</if>
+
+        </where>
+    </sql>
+
+    <select id="getObjectById"   parameterType="com.sunny.Codegenerator.entity.SapFuzhu"
+            resultType="com.sunny.Codegenerator.entity.SapFuzhu">
+        select
+        <include refid="resultColumns"/>
+        from Sap_fuzhu SapFuzhu where id=#{id}
+    </select>
+
+    <select id="queryList" parameterType="com.sunny.Codegenerator.entity.SapFuzhu"
+            resultType="com.sunny.Codegenerator.entity.SapFuzhu">
+        select
+        <include refid="resultColumns"/>
+        from Sap_fuzhu SapFuzhu
+        <include refid="dynamicCondition"/>
+    </select>
+    <insert id="insert" parameterType="com.sunny.Codegenerator.entity.SapFuzhu">
+        INSERT INTO Sap_fuzhu (ID,C_NAME
+,C_XUHAO
+,D_DATE
+,N_STAFF
+,N_LEIBIE
+,N_BZ
+,C_YANSE
+,N_ZLZX
+,N_BIAOZHI
+,N_SFTF
+,N_DQBZ
+,N_XMLB
+,N_QYBZ
+,N_SFMRP
+,D_JZRQ
+,D_SXRQ
+,C_GNFW
+,C_DJBZ
+,N_GONGXU
+,C_GLF
+,N_SFHD
+,N_MRPSPR
+,C_ZYTJ
+,C_TJLX
+,C_JHLB
+,C_SPR1
+,C_SPR2
+,C_SPR3
+,C_FPLX
+,C_JC
+,F_JC
+,C_JBDWLX
+,N_GCBZ
+,N_PAIXU
+,C_CHDLX
+,N_FKTJTS
+,N_CGDDSXS
+,C_LTC
+,N_SFMES
+,N_SFHWGL
+,C_NAME_EN
+,N_SFYW
+,C_GJ
+,N_WMSTYPE
+,C_IFMSBH
+,C_SAPNUMB
+) values(Sap_fuzhu_SEQ.NEXTVAL
+,#{cname,jdbcType=VARCHAR}
+,#{cxuhao,jdbcType=VARCHAR}
+, #{ddate,jdbcType=DATE}
+,#{nstaff,jdbcType=DECIMAL}
+,#{nleibie,jdbcType=DECIMAL}
+,#{nbz,jdbcType=DECIMAL}
+,#{cyanse,jdbcType=VARCHAR}
+,#{nzlzx,jdbcType=VARCHAR}
+,#{nbiaozhi,jdbcType=DECIMAL}
+,#{nsftf,jdbcType=DECIMAL}
+,#{ndqbz,jdbcType=DECIMAL}
+,#{nxmlb,jdbcType=DECIMAL}
+,#{nqybz,jdbcType=DECIMAL}
+,#{nsfmrp,jdbcType=DECIMAL}
+, #{djzrq,jdbcType=DATE}
+, #{dsxrq,jdbcType=DATE}
+,#{cgnfw,jdbcType=VARCHAR}
+,#{cdjbz,jdbcType=VARCHAR}
+,#{ngongxu,jdbcType=DECIMAL}
+,#{cglf,jdbcType=VARCHAR}
+,#{nsfhd,jdbcType=DECIMAL}
+,#{nmrpspr,jdbcType=DECIMAL}
+,#{czytj,jdbcType=VARCHAR}
+,#{ctjlx,jdbcType=VARCHAR}
+,#{cjhlb,jdbcType=VARCHAR}
+,#{cspr1,jdbcType=VARCHAR}
+,#{cspr2,jdbcType=VARCHAR}
+,#{cspr3,jdbcType=VARCHAR}
+,#{cfplx,jdbcType=VARCHAR}
+,#{cjc,jdbcType=VARCHAR}
+,#{fjc,jdbcType=DECIMAL}
+,#{cjbdwlx,jdbcType=VARCHAR}
+,#{ngcbz,jdbcType=DECIMAL}
+,#{npaixu,jdbcType=DECIMAL}
+,#{cchdlx,jdbcType=VARCHAR}
+,#{nfktjts,jdbcType=DECIMAL}
+,#{ncgddsxs,jdbcType=DECIMAL}
+,#{cltc,jdbcType=VARCHAR}
+,#{nsfmes,jdbcType=DECIMAL}
+,#{nsfhwgl,jdbcType=DECIMAL}
+,#{cnameen,jdbcType=VARCHAR}
+,#{nsfyw,jdbcType=DECIMAL}
+,#{cgj,jdbcType=VARCHAR}
+,#{nwmstype,jdbcType=DECIMAL}
+,#{cifmsbh,jdbcType=VARCHAR}
+,#{csapnumb,jdbcType=VARCHAR}
+)
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sunny.Codegenerator.entity.SapFuzhu">
+        update Sap_fuzhu
+        <set>
+
+             <if test="cname != null and cname != ''">
+C_NAME = #{cname},
+</if>
+ <if test="cxuhao != null and cxuhao != ''">
+C_XUHAO = #{cxuhao},
+</if>
+ <if test="ddate != null ">
+D_DATE = #{ddate},
+</if>
+ <if test="nstaff != null ">
+N_STAFF = #{nstaff},
+</if>
+ <if test="nleibie != null ">
+N_LEIBIE = #{nleibie},
+</if>
+ <if test="nbz != null ">
+N_BZ = #{nbz},
+</if>
+ <if test="cyanse != null and cyanse != ''">
+C_YANSE = #{cyanse},
+</if>
+ <if test="nzlzx != null and nzlzx != ''">
+N_ZLZX = #{nzlzx},
+</if>
+ <if test="nbiaozhi != null ">
+N_BIAOZHI = #{nbiaozhi},
+</if>
+ <if test="nsftf != null ">
+N_SFTF = #{nsftf},
+</if>
+ <if test="ndqbz != null ">
+N_DQBZ = #{ndqbz},
+</if>
+ <if test="nxmlb != null ">
+N_XMLB = #{nxmlb},
+</if>
+ <if test="nqybz != null ">
+N_QYBZ = #{nqybz},
+</if>
+ <if test="nsfmrp != null ">
+N_SFMRP = #{nsfmrp},
+</if>
+ <if test="djzrq != null ">
+D_JZRQ = #{djzrq},
+</if>
+ <if test="dsxrq != null ">
+D_SXRQ = #{dsxrq},
+</if>
+ <if test="cgnfw != null and cgnfw != ''">
+C_GNFW = #{cgnfw},
+</if>
+ <if test="cdjbz != null and cdjbz != ''">
+C_DJBZ = #{cdjbz},
+</if>
+ <if test="ngongxu != null ">
+N_GONGXU = #{ngongxu},
+</if>
+ <if test="cglf != null and cglf != ''">
+C_GLF = #{cglf},
+</if>
+ <if test="nsfhd != null ">
+N_SFHD = #{nsfhd},
+</if>
+ <if test="nmrpspr != null ">
+N_MRPSPR = #{nmrpspr},
+</if>
+ <if test="czytj != null and czytj != ''">
+C_ZYTJ = #{czytj},
+</if>
+ <if test="ctjlx != null and ctjlx != ''">
+C_TJLX = #{ctjlx},
+</if>
+ <if test="cjhlb != null and cjhlb != ''">
+C_JHLB = #{cjhlb},
+</if>
+ <if test="cspr1 != null and cspr1 != ''">
+C_SPR1 = #{cspr1},
+</if>
+ <if test="cspr2 != null and cspr2 != ''">
+C_SPR2 = #{cspr2},
+</if>
+ <if test="cspr3 != null and cspr3 != ''">
+C_SPR3 = #{cspr3},
+</if>
+ <if test="cfplx != null and cfplx != ''">
+C_FPLX = #{cfplx},
+</if>
+ <if test="cjc != null and cjc != ''">
+C_JC = #{cjc},
+</if>
+ <if test="fjc != null ">
+F_JC = #{fjc},
+</if>
+ <if test="cjbdwlx != null and cjbdwlx != ''">
+C_JBDWLX = #{cjbdwlx},
+</if>
+ <if test="ngcbz != null ">
+N_GCBZ = #{ngcbz},
+</if>
+ <if test="npaixu != null ">
+N_PAIXU = #{npaixu},
+</if>
+ <if test="cchdlx != null and cchdlx != ''">
+C_CHDLX = #{cchdlx},
+</if>
+ <if test="nfktjts != null ">
+N_FKTJTS = #{nfktjts},
+</if>
+ <if test="ncgddsxs != null ">
+N_CGDDSXS = #{ncgddsxs},
+</if>
+ <if test="cltc != null and cltc != ''">
+C_LTC = #{cltc},
+</if>
+ <if test="nsfmes != null ">
+N_SFMES = #{nsfmes},
+</if>
+ <if test="nsfhwgl != null ">
+N_SFHWGL = #{nsfhwgl},
+</if>
+ <if test="cnameen != null and cnameen != ''">
+C_NAME_EN = #{cnameen},
+</if>
+ <if test="nsfyw != null ">
+N_SFYW = #{nsfyw},
+</if>
+ <if test="cgj != null and cgj != ''">
+C_GJ = #{cgj},
+</if>
+ <if test="nwmstype != null ">
+N_WMSTYPE = #{nwmstype},
+</if>
+ <if test="cifmsbh != null and cifmsbh != ''">
+C_IFMSBH = #{cifmsbh},
+</if>
+ <if test="csapnumb != null and csapnumb != ''">
+C_SAPNUMB = #{csapnumb},
+</if>
+
+            version=version+1
+            </set>
+        where
+        id =  #{id} and version= #{version}
+    </update>
+
+
+    <delete id="deleteByIds">
+        delete
+        from
+        Sap_fuzhu
+        where
+        id in
+        <foreach collection="idList" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="count" parameterType="com.sunny.Codegenerator.entity.SapFuzhu" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM
+        from Sap_fuzhu SapFuzhu
+        <include refid="dynamicCondition"/>
+    </select>
+</mapper>
+

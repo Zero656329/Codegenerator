@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunny.Codegenerator.dao.TableDao">
+
+    <select id="getList" parameterType="com.sunny.Codegenerator.entity.Table" resultType="com.sunny.Codegenerator.entity.Table">
+SELECT
+	t.COLUMN_NAME AS cname,
+	t.DATA_TYPE AS ctype,
+	c.COMMENTS as cmemo
+FROM
+	user_tab_columns t,
+	user_col_comments c
+WHERE
+	t.table_name = c.table_name
+	AND t.column_name = c.column_name
+	AND t.table_name = #{ctable}
+ORDER BY
+	t.COLUMN_ID </select>
+
+
+
+</mapper>
