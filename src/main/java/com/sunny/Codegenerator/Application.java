@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan({"com.sunny.Codegenerator.dao"})
-public class CodegeneratorApplication {
+public class Application {
 	public static void main(String[] args) {
-		SpringApplication.run(CodegeneratorApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
