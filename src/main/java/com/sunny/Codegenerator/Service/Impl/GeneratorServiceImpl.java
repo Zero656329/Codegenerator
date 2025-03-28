@@ -3,6 +3,7 @@ package com.sunny.Codegenerator.Service.Impl;
 import com.sunny.Codegenerator.Service.GeneratorService;
 import com.sunny.Codegenerator.dao.TableDao;
 import com.sunny.Codegenerator.entity.Table;
+import com.sunny.Codegenerator.entity.TableColumnInfo;
 import com.sunny.Codegenerator.util.FreemarkerUtil;
 import com.sunny.Codegenerator.util.ZipUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.sql.*;
 import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -43,7 +45,9 @@ public class GeneratorServiceImpl implements GeneratorService {
         log.debug("entityNameLower=" + entityNameLower);
         // oracle查询表字段的语句,如果是其他数据库,修改此处查询语句
         table.setCtable(table.getCtable().toUpperCase());
-        List<Table> tablelist = tableDao.getList(table);
+        List<Table> tablelist =   getTableColumnsUsingJDBC("","","",tableName);
+
+     //   List<Table> tablelist = tableDao.getList(table);
 
         List<Map<String, String>> list = new LinkedList<>();
         //查询内容
@@ -285,8 +289,8 @@ public class GeneratorServiceImpl implements GeneratorService {
         log.debug("entityNameLower=" + entityNameLower);
         // oracle查询表字段的语句,如果是其他数据库,修改此处查询语句
         table.setCtable(table.getCtable().toUpperCase());
-        List<Table> tablelist = tableDao.getList(table);
 
+        List<Table> tablelist =   getTableColumnsUsingJDBC("","","",tableName);
         List<Map<String, String>> list = new LinkedList<>();
         //查询内容
         String resultColumns = "";
@@ -443,5 +447,22 @@ public class GeneratorServiceImpl implements GeneratorService {
         headers.set("Content-Type", "application/zip");
 
         return new ResponseEntity<byte[]>(zip, headers, HttpStatus.OK);
+    }
+
+
+    public List<Table> getTableColumnsUsingJDBC(String url, String username, String password, String tableName) throws SQLException {
+        Connection connection = DriverManager.getConnection(url, username, password);
+        DatabaseMetaData metaData = connection.getMetaData();
+        ResultSet columns = metaData.getColumns(null, null, tableName, null); // null for schema, null for table type (TABLE)
+        List<Table> result = new ArrayList<>();
+        while (columns.next()) {
+            Table columnInfo = new Table();
+            columnInfo.setCname(columns.getString("COLUMN_NAME"));
+            columnInfo.setCtype(columns.getString("TYPE_NAME"));
+
+            result.add(columnInfo);
+        }
+        return result;
+
     }
 }
